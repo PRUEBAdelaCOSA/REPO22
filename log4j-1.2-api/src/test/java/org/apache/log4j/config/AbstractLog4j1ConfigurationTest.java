@@ -67,10 +67,8 @@ import org.apache.logging.log4j.core.filter.ThresholdFilter;
 import org.apache.logging.log4j.core.layout.HtmlLayout;
 import org.apache.logging.log4j.core.layout.PatternLayout;
 import org.apache.logging.log4j.core.util.CloseShieldOutputStream;
-import org.junit.jupiter.api.io.TempDir;
-
 import org.junit.jupiter.api.Test;
-
+import org.junit.jupiter.api.io.TempDir;
 
 public abstract class AbstractLog4j1ConfigurationTest {
 
@@ -104,10 +102,7 @@ public abstract class AbstractLog4j1ConfigurationTest {
     private void testConsoleAppender(final ConsoleAppender expected, final ConsoleAppender actual) {
         assertEquals(expected.getImmediateFlush(), actual.getImmediateFlush(), "immediateFlush");
         assertEquals(expected.getTarget(), actual.getTarget(), "target");
-        assertEquals(
-                expected.getLayout().getClass(),
-                actual.getLayout().getClass(),
-                "layoutClass");
+        assertEquals(expected.getLayout().getClass(), actual.getLayout().getClass(), "layoutClass");
         if (expected.getLayout() instanceof PatternLayout) {
             patternLayoutEquals((PatternLayout) expected.getLayout(), (PatternLayout) actual.getLayout());
         }
@@ -217,8 +212,7 @@ public abstract class AbstractLog4j1ConfigurationTest {
 
         assertTrue(
                 rfa.getManager().getRolloverStrategy() instanceof DefaultRolloverStrategy, "defaultRolloverStrategy");
-        assertFalse(
-                ((DefaultRolloverStrategy) rfa.getManager().getRolloverStrategy()).isUseMax(), "rolloverStrategy");
+        assertFalse(((DefaultRolloverStrategy) rfa.getManager().getRolloverStrategy()).isUseMax(), "rolloverStrategy");
         assertEquals(false, getAppendProperty(rfa), "append");
         assertEquals(1000, rfa.getManager().getBufferSize(), "bufferSize");
         assertEquals(false, rfa.getImmediateFlush(), "immediateFlush");
@@ -226,7 +220,9 @@ public abstract class AbstractLog4j1ConfigurationTest {
         assertEquals(filePattern, rfa.getFilePattern());
         final TriggeringPolicy triggeringPolicy = rfa.getTriggeringPolicy();
         assertNotNull(triggeringPolicy);
-        assertTrue(triggeringPolicy instanceof CompositeTriggeringPolicy, triggeringPolicy.getClass().getName());
+        assertTrue(
+                triggeringPolicy instanceof CompositeTriggeringPolicy,
+                triggeringPolicy.getClass().getName());
         final CompositeTriggeringPolicy ctp = (CompositeTriggeringPolicy) triggeringPolicy;
         final TriggeringPolicy[] triggeringPolicies = ctp.getTriggeringPolicies();
         assertEquals(1, triggeringPolicies.length);
@@ -235,7 +231,9 @@ public abstract class AbstractLog4j1ConfigurationTest {
         final SizeBasedTriggeringPolicy sbtp = (SizeBasedTriggeringPolicy) tp;
         assertEquals(256 * 1024 * 1024, sbtp.getMaxFileSize());
         final RolloverStrategy rolloverStrategy = rfa.getManager().getRolloverStrategy();
-        assertTrue(rolloverStrategy instanceof DefaultRolloverStrategy, rolloverStrategy.getClass().getName());
+        assertTrue(
+                rolloverStrategy instanceof DefaultRolloverStrategy,
+                rolloverStrategy.getClass().getName());
         final DefaultRolloverStrategy drs = (DefaultRolloverStrategy) rolloverStrategy;
         assertEquals(20, drs.getMaxIndex());
         configuration.start();
@@ -249,7 +247,8 @@ public abstract class AbstractLog4j1ConfigurationTest {
             final Appender appender = configuration.getAppender(name);
             assertNotNull(appender);
             assertEquals(name, appender.getName());
-            assertTrue(appender instanceof RollingFileAppender, appender.getClass().getName());
+            assertTrue(
+                    appender instanceof RollingFileAppender, appender.getClass().getName());
             final RollingFileAppender rfa = (RollingFileAppender) appender;
             assertEquals(false, getAppendProperty(rfa), "append");
             assertEquals(1000, rfa.getManager().getBufferSize(), "bufferSize");
@@ -258,7 +257,9 @@ public abstract class AbstractLog4j1ConfigurationTest {
             assertEquals(filePattern, rfa.getFilePattern());
             final TriggeringPolicy triggeringPolicy = rfa.getTriggeringPolicy();
             assertNotNull(triggeringPolicy);
-            assertTrue(triggeringPolicy instanceof CompositeTriggeringPolicy, triggeringPolicy.getClass().getName());
+            assertTrue(
+                    triggeringPolicy instanceof CompositeTriggeringPolicy,
+                    triggeringPolicy.getClass().getName());
             final CompositeTriggeringPolicy ctp = (CompositeTriggeringPolicy) triggeringPolicy;
             final TriggeringPolicy[] triggeringPolicies = ctp.getTriggeringPolicies();
             assertEquals(1, triggeringPolicies.length);
@@ -267,7 +268,9 @@ public abstract class AbstractLog4j1ConfigurationTest {
             final TimeBasedTriggeringPolicy tbtp = (TimeBasedTriggeringPolicy) tp;
             assertEquals(1, tbtp.getInterval());
             final RolloverStrategy rolloverStrategy = rfa.getManager().getRolloverStrategy();
-            assertTrue(rolloverStrategy instanceof DefaultRolloverStrategy, rolloverStrategy.getClass().getName());
+            assertTrue(
+                    rolloverStrategy instanceof DefaultRolloverStrategy,
+                    rolloverStrategy.getClass().getName());
             final DefaultRolloverStrategy drs = (DefaultRolloverStrategy) rolloverStrategy;
             assertEquals(Integer.MAX_VALUE, drs.getMaxIndex());
         } finally {
@@ -394,8 +397,7 @@ public abstract class AbstractLog4j1ConfigurationTest {
         assertNotNull(ttccLayout);
         assertEquals(
                 "%r [%t] %p %c %notEmpty{%ndc }- %m%n",
-                ttccLayout.getConversionPattern(),
-                "equivalent conversion pattern");
+                ttccLayout.getConversionPattern(), "equivalent conversion pattern");
         // TODO: XMLLayout
         // final XmlLayout xmlLayout = (XmlLayout) testLayout(config, "XMLLayout");
         // assertNotNull(xmlLayout);
@@ -410,8 +412,7 @@ public abstract class AbstractLog4j1ConfigurationTest {
         assertNotNull(dailyRollingFileAppender);
         assertEquals(
                 "target/dailyRollingFileAppender%d{.yyyy-MM-dd}",
-                dailyRollingFileAppender.getFilePattern(),
-                "equivalent file pattern");
+                dailyRollingFileAppender.getFilePattern(), "equivalent file pattern");
         assertEquals(true, getAppendProperty(dailyRollingFileAppender), "append");
         assertEquals(8192, dailyRollingFileAppender.getManager().getBufferSize(), "bufferSize");
         assertEquals(true, dailyRollingFileAppender.getImmediateFlush(), "immediateFlush");
@@ -546,8 +547,10 @@ public abstract class AbstractLog4j1ConfigurationTest {
             logger.warn("ACCEPT message");
             expected++;
             System.out.println("#############expected" + expected);
-            System.out.println("#############legacyAppender.getEvents().size()" +legacyAppender.getEvents().size());
-            System.out.println("#############nativeAppender.getEvents().size()" +nativeAppender.getEvents().size());
+            System.out.println("#############legacyAppender.getEvents().size()"
+                    + legacyAppender.getEvents().size());
+            System.out.println("#############nativeAppender.getEvents().size()"
+                    + nativeAppender.getEvents().size());
             assertEquals(expected, legacyAppender.getEvents().size());
             assertEquals(expected, nativeAppender.getEvents().size());
             // message blocked by "StartsWith" filter
@@ -601,8 +604,7 @@ public abstract class AbstractLog4j1ConfigurationTest {
         assertEquals("target/EnhancedRollingFileAppender/defaultTime.log", defaultTime.getFileName(), "fileName");
         assertEquals(
                 "target/EnhancedRollingFileAppender/defaultTime.%d{yyyy-MM-dd}.log",
-                defaultTime.getFilePattern(),
-                "filePattern");
+                defaultTime.getFilePattern(), "filePattern");
         policy = defaultTime.getTriggeringPolicy();
         assertTrue(policy instanceof TimeBasedTriggeringPolicy, "is TimeBasedTriggeringPolicy");
         // Size policy with default attributes

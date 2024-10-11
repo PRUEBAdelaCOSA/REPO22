@@ -44,8 +44,8 @@ import org.apache.logging.log4j.message.SimpleMessage;
 import org.apache.logging.log4j.util.Constants;
 import org.apache.logging.log4j.util.Strings;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -346,17 +346,11 @@ public class CategoryTest {
             logger.addAppender(appender);
             // Root logger
             rootLogger.info("testAddLogger");
-            assertEquals(
-                    ++count,
-                    version1Appender.getEvents().size(),
-                    "adding at root works");
+            assertEquals(++count, version1Appender.getEvents().size(), "adding at root works");
             assertEquals(0, appender.getEvents().size(), "adding at child works");
             // Another logger
             logger.info("testAddLogger2");
-            assertEquals(
-                    ++count,
-                    version1Appender.getEvents().size(),
-                    "adding at root works");
+            assertEquals(++count, version1Appender.getEvents().size(), "adding at root works");
             assertEquals(1, appender.getEvents().size(), "adding at child works");
             // Call appenders
             final LoggingEvent event = new LoggingEvent();

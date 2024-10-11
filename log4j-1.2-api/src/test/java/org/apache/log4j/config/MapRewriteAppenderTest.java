@@ -74,7 +74,6 @@ public class MapRewriteAppenderTest {
         assertTrue(events != null && events.size() > 0, "No events");
         assertNotNull(events.get(0).getProperties(), "No properties in the event");
         assertTrue(events.get(0).getProperties().containsKey("hello"), "Key was not inserted");
-        assertEquals(
-                "world", events.get(0).getProperties().get("hello"), "Key value is incorrect");
+        assertEquals("world", events.get(0).getProperties().get("hello"), "Key value is incorrect");
     }
 }

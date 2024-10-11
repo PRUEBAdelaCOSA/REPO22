@@ -36,7 +36,7 @@ public class Log4j1ConfigurationConverterSparkTest extends AbstractLog4j1Configu
         super(path);
     }
 
-     // ParameterizedTest replacing the JUnit 4 @Test in abstract class
+    // ParameterizedTest replacing the JUnit 4 @Test in abstract class
     @ParameterizedTest
     @MethodSource("data")
     // @Override

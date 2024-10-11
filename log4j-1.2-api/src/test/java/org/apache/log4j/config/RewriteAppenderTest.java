@@ -73,8 +73,7 @@ public class RewriteAppenderTest {
         assertTrue(events != null && events.size() > 0, "No events");
         assertNotNull(events.get(0).getProperties(), "No properties in the event");
         assertTrue(events.get(0).getProperties().containsKey("key2"), "Key was not inserted");
-        assertEquals(
-                "Log4j", events.get(0).getProperties().get("key2"), "Key value is incorrect");
+        assertEquals("Log4j", events.get(0).getProperties().get("key2"), "Key value is incorrect");
         assertTrue(events.get(0).getTimeStamp() >= logTime, "Timestamp is before point of logging");
     }
 }

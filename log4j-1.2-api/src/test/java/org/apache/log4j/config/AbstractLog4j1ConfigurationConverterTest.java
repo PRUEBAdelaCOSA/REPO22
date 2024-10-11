@@ -29,13 +29,12 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import org.xml.sax.SAXException;
 // import org.junit.jupiter.params.ParameterizedTest;
 // import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.api.Test;
 
 // import org.junit.runner.RunWith;
 // import org.junit.runners.Parameterized;
-import org.xml.sax.SAXException;
 
 public abstract class AbstractLog4j1ConfigurationConverterTest {
 
