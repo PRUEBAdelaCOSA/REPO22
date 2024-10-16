@@ -86,12 +86,57 @@ public class PriorityTest {
     }
 
     /**
+     * Tests Priority.FATAL version2Level.
+     */
+    @Test
+    @SuppressWarnings("deprecation")
+    public void testFatalVersion2Level() {
+        assertEquals(org.apache.logging.log4j.Level.FATAL, Priority.FATAL.getVersion2Level());
+    }
+
+    /**
+     * Tests Priority.ERROR version2Level.
+     */
+    @Test
+    @SuppressWarnings("deprecation")
+    public void testErrorVersion2Level() {
+        assertEquals(org.apache.logging.log4j.Level.ERROR, Priority.ERROR.getVersion2Level());
+    }
+
+    /**
+     * Tests Priority.WARN version2Level.
+     */
+    @Test
+    @SuppressWarnings("deprecation")
+    public void testWarnVersion2Level() {
+        assertEquals(org.apache.logging.log4j.Level.WARN, Priority.WARN.getVersion2Level());
+    }
+
+    /**
+     * Tests Priority.INFO version2Level.
+     */
+    @Test
+    @SuppressWarnings("deprecation")
+    public void testInfoVersion2Level() {
+        assertEquals(org.apache.logging.log4j.Level.INFO, Priority.INFO.getVersion2Level());
+    }
+
+    /**
+     * Tests Priority.DEBUG version2Level.
+     */
+    @Test
+    @SuppressWarnings("deprecation")
+    public void testDebugVersion2Level() {
+        assertEquals(org.apache.logging.log4j.Level.DEBUG, Priority.DEBUG.getVersion2Level());
+    }
+
+    /**
      * Tests Priority.FATAL.
      */
     @Test
     @SuppressWarnings("deprecation")
-    public void testFatal() {
-        assertTrue(Priority.FATAL instanceof Level);
+    public void testFATAL() {
+        assertFalse(Priority.FATAL instanceof Level);
     }
 
     /**
@@ -100,7 +145,7 @@ public class PriorityTest {
     @Test
     @SuppressWarnings("deprecation")
     public void testERROR() {
-        assertTrue(Priority.ERROR instanceof Level);
+        assertFalse(Priority.ERROR instanceof Level);
     }
 
     /**
@@ -109,7 +154,7 @@ public class PriorityTest {
     @Test
     @SuppressWarnings("deprecation")
     public void testWARN() {
-        assertTrue(Priority.WARN instanceof Level);
+        assertFalse(Priority.WARN instanceof Level);
     }
 
     /**
@@ -118,7 +163,7 @@ public class PriorityTest {
     @Test
     @SuppressWarnings("deprecation")
     public void testINFO() {
-        assertTrue(Priority.INFO instanceof Level);
+        assertFalse(Priority.INFO instanceof Level);
     }
 
     /**
@@ -127,7 +172,7 @@ public class PriorityTest {
     @Test
     @SuppressWarnings("deprecation")
     public void testDEBUG() {
-        assertTrue(Priority.DEBUG instanceof Level);
+        assertFalse(Priority.DEBUG instanceof Level);
     }
 
     /**

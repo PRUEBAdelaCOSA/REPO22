@@ -20,6 +20,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Locale;
+import org.apache.log4j.helpers.OptionConverter;
 import org.apache.log4j.util.SerializationTestHelper;
 import org.junit.Test;
 
@@ -77,6 +78,7 @@ public class LevelTest {
         assertEquals(Level.INFO.level, clone.level);
         assertEquals(Level.INFO.levelStr, clone.levelStr);
         assertEquals(Level.INFO.syslogEquivalent, clone.syslogEquivalent);
+        assertEquals(OptionConverter.createLevel(custom), clone.version2Level);
     }
 
     /**
@@ -203,6 +205,70 @@ public class LevelTest {
     @Test
     public void testALL() {
         assertTrue(Level.ALL instanceof Level);
+    }
+
+    /**
+     * Tests Level.OFF version2Level.
+     */
+    @Test
+    public void testOffVersion2Level() {
+        assertEquals(org.apache.logging.log4j.Level.OFF, Level.OFF.getVersion2Level());
+    }
+
+    /**
+     * Tests Level.FATAL version2Level.
+     */
+    @Test
+    public void testFatalVersion2Level() {
+        assertEquals(org.apache.logging.log4j.Level.FATAL, Level.FATAL.getVersion2Level());
+    }
+
+    /**
+     * Tests Level.ERROR version2Level.
+     */
+    @Test
+    public void testErrorVersion2Level() {
+        assertEquals(org.apache.logging.log4j.Level.ERROR, Level.ERROR.getVersion2Level());
+    }
+
+    /**
+     * Tests Level.WARN version2Level.
+     */
+    @Test
+    public void testWarnVersion2Level() {
+        assertEquals(org.apache.logging.log4j.Level.WARN, Level.WARN.getVersion2Level());
+    }
+
+    /**
+     * Tests Level.INFO version2Level.
+     */
+    @Test
+    public void testInfoVersion2Level() {
+        assertEquals(org.apache.logging.log4j.Level.INFO, Level.INFO.getVersion2Level());
+    }
+
+    /**
+     * Tests Level.DEBUG version2Level.
+     */
+    @Test
+    public void testDebugVersion2Level() {
+        assertEquals(org.apache.logging.log4j.Level.DEBUG, Level.DEBUG.getVersion2Level());
+    }
+
+    /**
+     * Tests Level.TRACE version2Level.
+     */
+    @Test
+    public void testTraceVersion2Level() {
+        assertEquals(org.apache.logging.log4j.Level.TRACE, Level.TRACE.getVersion2Level());
+    }
+
+    /**
+     * Tests Level.ALL version2Level.
+     */
+    @Test
+    public void testAllVersion2Level() {
+        assertEquals(org.apache.logging.log4j.Level.ALL, Level.ALL.getVersion2Level());
     }
 
     /**
