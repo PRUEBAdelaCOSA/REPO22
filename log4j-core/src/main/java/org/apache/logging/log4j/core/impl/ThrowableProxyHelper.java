@@ -24,6 +24,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import org.apache.logging.log4j.core.util.Loader;
 import org.apache.logging.log4j.status.StatusLogger;
 import org.apache.logging.log4j.util.LoaderUtil;
@@ -34,7 +35,8 @@ import org.apache.logging.log4j.util.LoaderUtil;
  */
 @Deprecated
 final class ThrowableProxyHelper {
-
+    private static Map<String, Class> className2ClassMap = new ConcurrentHashMap();
+    
     private ThrowableProxyHelper() {
         // Utility Class
     }
@@ -199,11 +201,15 @@ final class ThrowableProxyHelper {
      */
     private static Class<?> loadClass(final ClassLoader lastLoader, final String className) {
         // XXX: this is overly complicated
-        Class<?> clazz;
+        Class<?> clazz = className2ClassMap.get(className);
+        if (null != clazz) {
+            return clazz;
+        }
         if (lastLoader != null) {
             try {
                 clazz = lastLoader.loadClass(className);
                 if (clazz != null) {
+                    className2ClassMap.put(className, clazz);
                     return clazz;
                 }
             } catch (final Throwable ignore) {
@@ -213,10 +219,11 @@ final class ThrowableProxyHelper {
         try {
             clazz = LoaderUtil.loadClass(className);
         } catch (final ClassNotFoundException | NoClassDefFoundError e) {
-            return loadClass(className);
+            clazz = loadClass(className);
         } catch (final SecurityException e) {
             return null;
         }
+        className2ClassMap.put(className, clazz);
         return clazz;
     }
 
